@@ -128,17 +128,32 @@ USE_TZ = True
 AWS_ACCESS_KEY_ID = 'AKIATKNE2GUENEM5NPYE'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'djangoprofilesbucket'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
+AWS_QUERYSTRING_AUTH = False
+AWS_HEADERS = {
+    'Access-Control-Allow-Origin': '*',
+}
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mytinder/static'),
 ]
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-
+AWS_DEFAULT_ACL = 'public-read'
 DEFAULT_FILE_STORAGE = 'mytinder.storage_backends.MediaStorage'
 AUTH_USER_MODEL = 'profiles_api.UserProfile'
+
+"""
+<?xml version="1.0" encoding="UTF-8">
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+</CORSRule>
+</CORSConfiguration>
+
+"""
