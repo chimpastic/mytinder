@@ -15,7 +15,7 @@ from profiles_api import models
 
 class HelloApiView(APIView):
 
-    """Example api view"""
+    """Example api viewcxvv"""
     serializer_class = serializers.HelloSerializer
 
     def get(self, request, format=None):
